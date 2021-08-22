@@ -3,6 +3,7 @@ import moment from "moment";
 import "../../index.css";
 
 import Slider from "react-slick";
+import Loading from "../Loading/Loading";
 
 import {
   ForecastCard,
@@ -48,7 +49,7 @@ export const Hourly = () => {
   return (
     <WeatherContainer>
       <Title color="black">Hourly Forecast</Title>
-    
+      {onecall?.loading?  <Loading/>:<>
         {onecall?.data?.hourly && (
          <Slider {...settings}>
             {onecall.data.hourly.map((data, index) => (
@@ -65,7 +66,8 @@ export const Hourly = () => {
               </div>
             ))}
            </Slider>
-        )}
+        )}</>
+      }
     </WeatherContainer>
   );
 };

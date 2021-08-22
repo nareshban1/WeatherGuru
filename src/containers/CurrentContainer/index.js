@@ -35,7 +35,7 @@ function CurrentWeatherContainer() {
   };
 
   const getTime = (time) => {
-    return moment.unix(time).format("h:m A");
+    return moment.unix(time).format("h:mm A");
   };
 
   const getCurrentData = () => {

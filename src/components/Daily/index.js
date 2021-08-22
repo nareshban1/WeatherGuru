@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import "../../index.css";
-
+import Loading from "../Loading/Loading";
 import Slider from "react-slick";
 
 import {
@@ -49,7 +49,7 @@ export const Daily = () => {
   return (
     <WeatherContainer>
       <Title color="black">Daily Forecast</Title>
-    
+      {onecall?.loading?  <Loading/>:<>
         {onecall?.data?.daily && (
          <Slider {...settings}>
             {onecall.data.daily.map((data, index) => (
@@ -66,7 +66,8 @@ export const Daily = () => {
               </div>
             ))}
            </Slider>
-        )}
+        )}</>
+        }
     </WeatherContainer>
   );
 };

@@ -15,7 +15,7 @@ function App() {
   const dispatch = useDispatch();
   const current = useSelector((state) => state.currentWeather);
   const onecall = useSelector((state) => state.onecallWeather);
-  const daily = useSelector((state) => state.dailyForecast);
+ 
 
   const getByCoordinates = () => {
     var weatherdata = [];
@@ -27,8 +27,6 @@ function App() {
       dispatch(loadonecallWeather({ ...weatherdata }));
     }
   };
-
-
 
   useEffect(() => {
     getByCoordinates();
