@@ -15,7 +15,7 @@ const api =
     
     try {
       const response = await axios.request({
-        baseURL: `http://api.openweathermap.org/data/2.5/${url}&appid=${process.env.REACT_APP_API_KEY}`,
+        baseURL: `https://api.openweathermap.org/data/2.5/${url}&appid=${process.env.REACT_APP_API_KEY}`,
         method,
         data,
       });
