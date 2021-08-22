@@ -13,11 +13,12 @@ import {
   WeatherIcon,
   WeatherIconSmall,
 } from "../StyledComponents/Styled";
+import { WeatherIconSwitcher } from "../commons";
 
 export const Hourly = () => {
   const dispatch = useDispatch();
   const onecall = useSelector((state) => state.onecallWeather);
-  console.log(onecall);
+  
 
   const getTime = (time) => {
     return moment.unix(time).format("h A");
@@ -53,12 +54,10 @@ export const Hourly = () => {
         {onecall?.data?.hourly && (
          <Slider {...settings}>
             {onecall.data.hourly.map((data, index) => (
-                <div>
-                    <ForecastCard key={index}>
+                <div key={index}>
+                    <ForecastCard >
                         <Info color="black">{getTime(data.dt)}</Info>
-                        <WeatherIconSmall
-                        src={process.env.PUBLIC_URL + "/static/animated/night.svg"}
-                        />
+                        {WeatherIconSwitcher(data.weather?.[0]?.main)}
                         <Info color="black">{Round(data.temp)}&#xb0;</Info>
 
                         <Info color="black">{data.weather?.[0]?.main}</Info>

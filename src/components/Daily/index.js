@@ -12,11 +12,12 @@ import {
   WeatherIcon,
   WeatherIconSmall,
 } from "../StyledComponents/Styled";
+import { WeatherIconSwitcher } from "../commons";
 
 export const Daily = () => {
   const dispatch = useDispatch();
   const onecall = useSelector((state) => state.onecallWeather);
-  console.log(onecall);
+  
 
   const getTime = (time) => {
     var dt = moment.unix(time, "YYYY-MM-DD HH:mm:ss")
@@ -53,12 +54,11 @@ export const Daily = () => {
         {onecall?.data?.daily && (
          <Slider {...settings}>
             {onecall.data.daily.map((data, index) => (
-                <div>
+                <div key={index}>
                     <ForecastCard key={index}>
                         <Info color="black">{getTime(data.dt)}</Info>
-                        <WeatherIconSmall
-                        src={process.env.PUBLIC_URL + "/static/animated/night.svg"}
-                        />
+
+                        {WeatherIconSwitcher(data.weather?.[0]?.main)}
                         <Info color="black">{Round(data.temp?.max)}&#xb0;/{Round(data.temp?.min)}&#xb0;</Info>
 
                         <Info color="black">{data.weather?.[0]?.main}</Info>

@@ -8,14 +8,14 @@ import { AppContainer, AppLogo, Container } from "./components/StyledComponents/
 import CurrentWeatherContainer from "./containers/CurrentContainer";
 import { Hourly } from "./components/Hourly";
 import { Daily } from "./components/Daily";
+import { loadAirQuality } from "./redux/features/Reducers/airqualityReducer";
 
 
 function App() {
 
   const dispatch = useDispatch();
   const current = useSelector((state) => state.currentWeather);
-  const onecall = useSelector((state) => state.onecallWeather);
- 
+
 
   const getByCoordinates = () => {
     var weatherdata = [];
@@ -25,6 +25,7 @@ function App() {
         lon: current?.data?.coord?.lon,
       };
       dispatch(loadonecallWeather({ ...weatherdata }));
+      dispatch(loadAirQuality({ ...weatherdata }));
     }
   };
 

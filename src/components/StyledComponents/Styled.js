@@ -89,6 +89,7 @@ export const LocationName = styled.p`
   font-family: "Poiret One";
   font-size: 24px;
   font-weight: bold;
+  color:rgb(126, 164, 236);
 `;
 
 export const Temp = styled.p`
@@ -142,6 +143,7 @@ export const Info = styled.p`
   align-items:center;
   margin:5px 0px;
   text-transform:capitalize;
+  color:rgb(126, 164, 236);
 `;
 
 

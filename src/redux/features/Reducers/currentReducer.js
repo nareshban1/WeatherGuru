@@ -30,7 +30,6 @@ const { currentRequested, currentReceived, currentRequestFailed } =
 currentslice.actions;
 
 export const loadCurrentWeather = (location) => (dispatch) => {
-  console.log(location)
   let url;
   if(typeof location === "object"){
     url = `weather?lat=${location.lat}&lon=${location.lon}&units=metric`;
