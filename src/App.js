@@ -1,57 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import { SearchBar } from "./components/Search/index";
+import {loadonecallWeather} from "./redux/features/Reducers/apiReducers"
+import { useSelector, useDispatch } from "react-redux";
+import { loadCurrentWeather } from "./redux/features/Reducers/currentReducer";
+import { AppContainer, AppLogo, Container } from "./components/StyledComponents/Styled";
+import CurrentWeatherContainer from "./containers/CurrentContainer";
+import { Hourly } from "./components/Hourly";
+import { Daily } from "./components/Daily";
+
 
 function App() {
+
+  const dispatch = useDispatch();
+  const current = useSelector((state) => state.currentWeather);
+  const onecall = useSelector((state) => state.onecallWeather);
+  const daily = useSelector((state) => state.dailyForecast);
+
+  const getByCoordinates = () => {
+    var weatherdata = [];
+    if (Object.keys(current.data).length !== 0) {
+      weatherdata = {
+        lat: current?.data?.coord?.lat,
+        lon: current?.data?.coord?.lon,
+      };
+      dispatch(loadonecallWeather({ ...weatherdata }));
+    }
+  };
+
+
+
+  useEffect(() => {
+    getByCoordinates();
+  }, [current]);
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <AppContainer>
+      <Container>
+        <div className="dev">This site is still under devvelopment</div>
+        <AppLogo>Weather.Guru</AppLogo>
+        <SearchBar/>
+        <CurrentWeatherContainer/>
+        <Hourly/>
+        <Daily/>
+      </Container>
+    </AppContainer>
   );
 }
 
