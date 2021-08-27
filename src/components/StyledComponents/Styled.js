@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const AppContainer = styled.div`
-  background-color: #f4f7fe;
+  background-color: #393E46;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -19,7 +19,7 @@ export const Container = styled.div`
 `;
 
 export const WeatherContainer = styled.div`
-  background-color: white;
+  background-color: #222831;
   border-radius: 10px;
   box-shadow: 8px 10px 20px rgb(39 44 49 / 6%),
     -1px -1px 10px rgb(39 44 49 / 10%);
@@ -34,18 +34,15 @@ export const Searchbar = styled.form`
   width:100%;
   position: relative;
   height: 50px;
-  background-color: white;
-  border: solid 1px #d3d3d3;
+  background-color: #222831;
   transition: 1s;
-  border-radius: 25px;
-  box-shadow: 0 0 2pt 0.5pt #d3d3d3;
-
+  border-radius: 8px;
 
 `;
 
 export const Search = styled.input`
   width: 100%;
-  border-radius: 25px;
+  border-radius: 8px;
   border: none;
   height: 100%;
   text-indent: 1em;
@@ -53,6 +50,7 @@ export const Search = styled.input`
   font-size: 1em;
   outline: none;
   transition: 0.5s;
+  background-color: #222831;
 
   &:focus {
     box-shadow: 0 0 3pt 0.5pt ${(props) => props.color};
@@ -65,16 +63,17 @@ export const SearchButton = styled.button`
   right: 0;
   height: 100%;
   padding: 8px;
-  font-size: 2em;
-  background-color: white;
-  border-radius: 50%;
+  font-size: 1.5em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: 0.5s ease all;
+  background-color:transparent;
+  color:#FFD369;
 
   &:hover {
-    color: red;
+    background-color: #FFD369;
+    color:white;
   }
 `;
 
@@ -86,24 +85,37 @@ export const Title = styled.p`
 `;
 export const LocationName = styled.p`
   color: ${(props) => props.color};
-  font-family: "Poiret One";
+  font-family: "Poppins";
   font-size: 24px;
-  font-weight: bold;
-  color:rgb(126, 164, 236);
+  font-weight: semi-bold;
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  
+
+  @media (max-width:600px) {
+    flex-direction:column
+  }
 `;
 
-export const Temp = styled.p`
-  color: ${(props) => props.color};
-  font-family: "Poiret One";
-  font-size: 150px;
-  font-weight: bold;
+
+
+export const WeatherIcon = styled.iframe`
+  height:auto;
+  width:150px;
+  border:none;
+  display:flex;
+  text-align:left;
+ 
+
+  @media (min-width:600px) {
+    order:2;
+  }
 `;
 
-export const WeatherIcon = styled.img`
-  height: 200px;
-`;
-
-export const WeatherIconSmall = styled.img`
+export const WeatherIconSmall = styled.iframe`
+    width:100%;
+    border:none;
   
 `;
 
@@ -111,11 +123,36 @@ export const CurrentWeatherCard = styled.div`
   display: flex;
   flex-direction: column;
   width:100%;
+  @media (min-width:600px) {
+    width:60%;
+  }
+`;
+
+export const InfoList = styled.div`
+  display: flex;
+  width:100%;
 `;
 
 export const CurrentTemp = styled.div`
-  display: flex;
-  align-items: center;
+  text-align:left;
+  width:100%;
+
+  @media (min-width:600px) {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-right:40px;
+  }
+`;
+
+export const Temp = styled.p`
+  color: ${(props) => props.color};
+  font-family: "Azonix";
+  font-size: 10rem;
+  font-weight: semi-bold;
+  @media (min-width:600px) {
+    order:1;
+  }
 `;
 
 
@@ -133,6 +170,10 @@ export const CurrentInfo = styled.div`
   width:100%;
   justify-content:space-evenly;
 
+  @media (min-width:600px) {
+    width:40%;
+  }
+
 `;
 
 export const Info = styled.p`
@@ -141,9 +182,19 @@ export const Info = styled.p`
   font-size: 18px;
   display:flex;
   align-items:center;
+  justify-content:space-between;
   margin:5px 0px;
   text-transform:capitalize;
-  color:rgb(126, 164, 236);
+
+  & span:first-child {
+    display:flex;
+    align-items:center;
+    color:white;
+  }
+
+  & span:last-child {
+   
+  }
 `;
 
 
@@ -162,8 +213,8 @@ export const ForecastCard = styled.div`
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    box-shadow: 0 0 2pt 0.5pt #d3d3d3;
     border-radius:5px;
+    background-color:#393E46;
 
 `;
 
@@ -174,8 +225,8 @@ font-size:35px;
 justify-self:flex-start;
 align-self:flex-start;
 font-weight:600;
-margin-bottom:20px;
-
+margin:20px 0px;
+color:#FFD369;
 `;
 
 

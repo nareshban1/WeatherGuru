@@ -18,7 +18,11 @@ body {
 
 .icon{
   font-size: 1.5em;
-  color:rgb(126, 164, 236);
+  color:#FFD369;
+}
+
+.dateTime{
+  font-size: 18px;
 }
 
 

@@ -15,7 +15,6 @@ import {
   Temp,
   Title,
   WeatherContainer,
-  WeatherIcon,
   Info,
 } from "../../components/StyledComponents/Styled";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,6 +23,10 @@ import { loadonecallWeather } from "../../redux/features/Reducers/apiReducers";
 import Loading from "../../components/Loading/Loading";
 import moment from "moment";
 import { loadAirQuality } from "../../redux/features/Reducers/airqualityReducer";
+import { BigWeatherIconSwitcher } from "../../components/commons";
+import { format } from 'date-fns'
+
+
 
 function CurrentWeatherContainer() {
   const dispatch = useDispatch();
@@ -35,7 +38,8 @@ function CurrentWeatherContainer() {
   };
 
   const getTime = (time) => {
-    return moment.unix(time).format("h:mm A");
+    var date = time*1000;
+    return format(new Date(date), ' yyyy-MMM-dd cccc hh:mm aaa x');
   };
 
   const getCurrentData = () => {
@@ -72,78 +76,9 @@ function CurrentWeatherContainer() {
 
       case 5:
         return "Very Poor";
-    }
-  };
-
-  const WeatherIconSwitcher = (value) => {
-    switch (value) {
-      case "Clouds":
-        return (
-          <WeatherIcon
-            src={process.env.PUBLIC_URL + "/static/animated/cloudy.svg"}
-          />
-        );
-      case "Clear":
-        return (
-          <WeatherIcon
-            src={process.env.PUBLIC_URL + "/static/animated/day.svg"}
-          />
-        );
-      case "Snow":
-        return (
-          <WeatherIcon
-            src={process.env.PUBLIC_URL + "/static/animated/snowy-6.svg"}
-          />
-        );
-      case "Rain":
-        return (
-          <WeatherIcon
-            src={process.env.PUBLIC_URL + "/static/animated/rainy-7.svg"}
-          />
-        );
-      case "Drizzle":
-        return (
-          <WeatherIcon
-            src={process.env.PUBLIC_URL + "/static/animated/rainy-4.svg"}
-          />
-        );
-      case "Thunderstorm":
-        return (
-          <WeatherIcon
-            src={process.env.PUBLIC_URL + "/static/animated/thunder.svg"}
-          />
-        );
-      case "Mist":
-        return (
-          <WeatherIcon
-            src={process.env.PUBLIC_URL + "/static/animated/night.svg"}
-          />
-        );
-      case "Haze":
-        return (
-          <WeatherIcon
-            src={process.env.PUBLIC_URL + "/static/animated/day.svg"}
-          />
-        );
-      case "Fog":
-        return (
-          <WeatherIcon
-            src={process.env.PUBLIC_URL + "/static/animated/cloudy.svg"}
-          />
-        );
-      case "Sand":
-        return (
-          <WeatherIcon
-            src={process.env.PUBLIC_URL + "/static/animated/day.svg"}
-          />
-        );
 
       default:
-        return (
-          <WeatherIcon
-            src={process.env.PUBLIC_URL + "/static/animated/cloudy-day-1.svg"}
-          />
-        );
+        return "No Data";
     }
   };
 
@@ -153,22 +88,38 @@ function CurrentWeatherContainer() {
 
   return (
     <WeatherContainer>
-      <Title color="black">Current Weather</Title>
+      <Title color="#FFD369">Current Weather</Title>
       {current?.loading ? (
         <Loading />
       ) : (
         <>
-          <LocationName color="black">
-            {current?.data?.name} {getTime(current?.data?.dt)}
+          <LocationName color="#EEEEEE">
+            <span>{current?.data?.name} </span>{" "}
+            <span className="dateTime">
+              {current?.data?.dt &&
+              <>
+           {getTime(current?.data?.dt)}
+              </>
+              }
+            </span>
           </LocationName>
           <CurrentData>
             <CurrentWeatherCard>
               <CurrentTemp>
-                <Temp color="black">
+                {BigWeatherIconSwitcher(current?.data?.weather?.[0]?.main)}
+                <Temp color="#FFD369">
                   {Round(current?.data?.main?.temp)}&#xb0;
                 </Temp>
-                {WeatherIconSwitcher(current?.data?.weather?.[0]?.main)}
               </CurrentTemp>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection:"column",
+                  width:"100%",
+                  alignItems:"flex-start",
+                  paddingRight:"40px",
+                }}
+              >
               <div
                 style={{
                   display: "flex",
@@ -176,44 +127,65 @@ function CurrentWeatherContainer() {
                   justifyContent: "space-between",
                 }}
               >
-                <Info color="black">
+                <Info color="#EEEEEE">
                   {Round(current?.data?.main?.temp_max)}&#xb0;
                   <BiUpArrow></BiUpArrow>
                 </Info>
-                <Info color="black">
+                <Info color="#EEEEEE">
                   {Round(current?.data?.main?.temp_min)}&#xb0;
                   <BiDownArrow> </BiDownArrow>{" "}
                 </Info>
               </div>
 
-              <Info color="black">
+              <Info color="#EEEEEE">
                 {current?.data?.weather?.[0]?.description}
               </Info>
+              </div>
             </CurrentWeatherCard>
             <CurrentInfo>
-              <Info color="black">
-                <WiThermometer className="icon" />
-                &nbsp;&nbsp;Feels like {Round(current?.data?.main?.feels_like)}
-                &#xb0;
+              <Info color="#FFD369">
+                <span>
+                  <WiThermometer className="icon" />
+                  &nbsp;&nbsp;Feels like :
+                </span>
+                <span>
+                  {Round(current?.data?.main?.feels_like)}
+                  &#xb0;
+                </span>
               </Info>
 
-              <Info color="black">
-                <WiStrongWind className="icon" />
-                &nbsp;&nbsp;Wind {Round(current?.data?.wind?.speed * 3.6)}Kph
+              <Info color="#FFD369">
+                <span>
+                  {" "}
+                  <WiStrongWind className="icon" />
+                  &nbsp;&nbsp;Wind :
+                </span>
+                <span>{Round(current?.data?.wind?.speed * 3.6)}Kph</span>
               </Info>
-              <Info color="black">
-                <WiHumidity className="icon" />
-                &nbsp;&nbsp;Humidity {Round(current?.data?.main?.humidity)}%
+              <Info color="#FFD369">
+                <span>
+                  <WiHumidity className="icon" />
+                  &nbsp;&nbsp;Humidity :
+                </span>
+                <span> {Round(current?.data?.main?.humidity)}%</span>
               </Info>
-              <Info color="black">
-                <WiBarometer className="icon" />
-                &nbsp;&nbsp;Pressure {Round(current?.data?.main?.pressure)}hpa
+              <Info color="#FFD369">
+                <span>
+                  <WiBarometer className="icon" />
+                  &nbsp;&nbsp;Pressure :
+                </span>
+                <span>{Round(current?.data?.main?.pressure)}hpa</span>
               </Info>
 
-              <Info color="black">
-                <WiBarometer className="icon" />
-                &nbsp;&nbsp;Air Quality{" "}
-                {AirQuality(airquality?.data?.list?.[0]?.main?.aqi)}
+              <Info color="#FFD369">
+                <span>
+                  <WiBarometer className="icon" />
+                  &nbsp;&nbsp;Air Quality :
+                </span>
+                <span>
+                  {" "}
+                  {AirQuality(airquality?.data?.list?.[0]?.main?.aqi)}
+                </span>
               </Info>
             </CurrentInfo>
           </CurrentData>

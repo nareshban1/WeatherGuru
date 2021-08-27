@@ -49,18 +49,18 @@ export const Hourly = () => {
 
   return (
     <WeatherContainer>
-      <Title color="black">Hourly Forecast</Title>
+      <Title color="#FFD369">Hourly Forecast</Title>
       {onecall?.loading?  <Loading/>:<>
         {onecall?.data?.hourly && (
          <Slider {...settings}>
             {onecall.data.hourly.map((data, index) => (
                 <div key={index}>
                     <ForecastCard >
-                        <Info color="black">{getTime(data.dt)}</Info>
+                        <Info color="#EEEEEE">{getTime(data.dt)}</Info>
                         {WeatherIconSwitcher(data.weather?.[0]?.main)}
-                        <Info color="black">{Round(data.temp)}&#xb0;</Info>
+                        <Info color="#FFD369">{Round(data.temp)}&#xb0;</Info>
 
-                        <Info color="black">{data.weather?.[0]?.main}</Info>
+                        <Info color="#EEEEEE">{data.weather?.[0]?.main}</Info>
                     </ForecastCard>
               </div>
             ))}

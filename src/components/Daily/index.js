@@ -49,19 +49,19 @@ export const Daily = () => {
 
   return (
     <WeatherContainer>
-      <Title color="black">Daily Forecast</Title>
+      <Title color="#FFD369">Daily Forecast</Title>
       {onecall?.loading?  <Loading/>:<>
         {onecall?.data?.daily && (
          <Slider {...settings}>
             {onecall.data.daily.map((data, index) => (
                 <div key={index}>
                     <ForecastCard key={index}>
-                        <Info color="black">{getTime(data.dt)}</Info>
+                        <Info color="#EEEEE">{getTime(data.dt)}</Info>
 
                         {WeatherIconSwitcher(data.weather?.[0]?.main)}
-                        <Info color="black">{Round(data.temp?.max)}&#xb0;/{Round(data.temp?.min)}&#xb0;</Info>
+                        <Info color="#FFD369">{Round(data.temp?.max)}&#xb0;/{Round(data.temp?.min)}&#xb0;</Info>
 
-                        <Info color="black">{data.weather?.[0]?.main}</Info>
+                        <Info color="#EEEEEE">{data.weather?.[0]?.main}</Info>
                     </ForecastCard>
               </div>
             ))}
