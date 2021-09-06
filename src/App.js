@@ -38,7 +38,6 @@ function App() {
   return (
     <AppContainer>
       <Container>
-        <div className="dev">This site is still under devvelopment</div>
         <AppLogo>Weather.Guru</AppLogo>
         <SearchBar/>
         <CurrentWeatherContainer/>
