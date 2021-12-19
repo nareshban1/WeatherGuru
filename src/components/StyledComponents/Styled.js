@@ -5,7 +5,7 @@ export const AppContainer = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
-  justtify-content: center;
+  justify-content: center;
   align-items: center;
 `;
 export const Container = styled.div`
@@ -13,7 +13,7 @@ export const Container = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justtify-content: center;
+  justify-content: center;
   align-items: center;
   padding: 5px;
 `;
@@ -198,7 +198,7 @@ export const Info = styled.p`
 `;
 
 
-export const LoadingContainer= styled.div`
+export const LoadingContainer = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;

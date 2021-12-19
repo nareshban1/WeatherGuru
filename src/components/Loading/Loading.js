@@ -6,7 +6,7 @@ import { LoadingContainer } from '../StyledComponents/Styled'
 function Loading() {
     return (
         <LoadingContainer>
-                <OrbitSpinner color="#FFD369"/>
+            <OrbitSpinner color="#FFD369" />
         </LoadingContainer>
     )
 }

@@ -21,7 +21,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { loadCurrentWeather } from "../../redux/features/Reducers/currentReducer";
 import { loadonecallWeather } from "../../redux/features/Reducers/apiReducers";
 import Loading from "../../components/Loading/Loading";
-import moment from "moment";
 import { loadAirQuality } from "../../redux/features/Reducers/airqualityReducer";
 import { BigWeatherIconSwitcher } from "../../components/commons";
 import { format } from 'date-fns'
@@ -38,7 +37,7 @@ function CurrentWeatherContainer() {
   };
 
   const getTime = (time) => {
-    var date = time*1000;
+    var date = time * 1000;
     return format(new Date(date), ' yyyy-MMM-dd cccc hh:mm aaa x');
   };
 
@@ -97,9 +96,9 @@ function CurrentWeatherContainer() {
             <span>{current?.data?.name} </span>{" "}
             <span className="dateTime">
               {current?.data?.dt &&
-              <>
-           {getTime(current?.data?.dt)}
-              </>
+                <>
+                  {getTime(current?.data?.dt)}
+                </>
               }
             </span>
           </LocationName>
@@ -114,32 +113,32 @@ function CurrentWeatherContainer() {
               <div
                 style={{
                   display: "flex",
-                  flexDirection:"column",
-                  width:"100%",
-                  alignItems:"flex-start",
-                  paddingRight:"40px",
+                  flexDirection: "column",
+                  width: "100%",
+                  alignItems: "flex-start",
+                  paddingRight: "40px",
                 }}
               >
-              <div
-                style={{
-                  display: "flex",
-                  width: "130px",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Info color="#EEEEEE">
-                  {Round(current?.data?.main?.temp_max)}&#xb0;
-                  <BiUpArrow></BiUpArrow>
-                </Info>
-                <Info color="#EEEEEE">
-                  {Round(current?.data?.main?.temp_min)}&#xb0;
-                  <BiDownArrow> </BiDownArrow>{" "}
-                </Info>
-              </div>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "130px",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Info color="#EEEEEE">
+                    {Round(current?.data?.main?.temp_max)}&#xb0;
+                    <BiUpArrow></BiUpArrow>
+                  </Info>
+                  <Info color="#EEEEEE">
+                    {Round(current?.data?.main?.temp_min)}&#xb0;
+                    <BiDownArrow> </BiDownArrow>{" "}
+                  </Info>
+                </div>
 
-              <Info color="#EEEEEE">
-                {current?.data?.weather?.[0]?.description}
-              </Info>
+                <Info color="#EEEEEE">
+                  {current?.data?.weather?.[0]?.description}
+                </Info>
               </div>
             </CurrentWeatherCard>
             <CurrentInfo>

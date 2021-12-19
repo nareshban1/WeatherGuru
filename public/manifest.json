@@ -1,9 +1,7 @@
 {
   "short_name": "Weather Guru",
   "name": "Weather app demo",
-  "icons": [
-    
-  ],
+  "icons": [],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

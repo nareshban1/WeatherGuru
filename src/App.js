@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { SearchBar } from "./components/Search/index";
-import {loadonecallWeather} from "./redux/features/Reducers/apiReducers"
+import { loadonecallWeather } from "./redux/features/Reducers/apiReducers"
 import { useSelector, useDispatch } from "react-redux";
-import { loadCurrentWeather } from "./redux/features/Reducers/currentReducer";
 import { AppContainer, AppLogo, Container } from "./components/StyledComponents/Styled";
 import CurrentWeatherContainer from "./containers/CurrentContainer";
 import { Hourly } from "./components/Hourly";
@@ -33,16 +32,16 @@ function App() {
     getByCoordinates();
   }, [current]);
 
-  
+
 
   return (
     <AppContainer>
       <Container>
         <AppLogo>Weather.Guru</AppLogo>
-        <SearchBar/>
-        <CurrentWeatherContainer/>
-        <Hourly/>
-        <Daily/>
+        <SearchBar />
+        <CurrentWeatherContainer />
+        <Hourly />
+        <Daily />
       </Container>
     </AppContainer>
   );
