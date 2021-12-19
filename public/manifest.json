@@ -1,6 +1,6 @@
 {
   "short_name": "Weather Guru",
-  "name": "Weather app demo",
+  "name": "Weather.Guru",
   "icons": [
     {
       "src": "/static/weathericon.png",
