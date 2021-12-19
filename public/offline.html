@@ -2,25 +2,70 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="./static/weathericon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="React weather application" />
+    <link rel="apple-touch-icon" href="./static/weathericon.png" />
     <title>Weather.Guru</title>
-
-    <style type="text/css">
-      body {
-        background-color: red;
-      }
-      .info {
-        background-color: #222831;
-      }
-    </style>
   </head>
 
+  <style type="text/css">
+    body {
+      background-color: #393e46;
+    }
+    .container {
+      width: min(98%, 960px);
+      margin: 0 auto;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .info {
+      background-color: #222831;
+      border-radius: 10px;
+      box-shadow: 8px 10px 20px rgb(39 44 49 / 6%),
+        -1px -1px 10px rgb(39 44 49 / 10%);
+      color: white;
+      padding: 10px;
+      width: 100%;
+      min-height: 200px;
+      margin-top: 10px;
+      box-sizing: border-box;
+      font-family: "Poppins";
+    }
+
+    .logo {
+      font-family: "Poppins";
+      font-size: 35px;
+      justify-self: flex-start;
+      align-self: flex-start;
+      font-weight: 600;
+      margin: 20px 0px;
+      color: #ffd369;
+    }
+
+    .title {
+      color: #ffd369;
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    .moreinfo {
+      font-size: 18px;
+    }
+  </style>
   <body>
-    <div class="info">Check your internet Connection.</div>
+    <div class="container">
+      <p class="logo">Weather.Guru</p>
+      <div class="info">
+        <p class="title">No internet connection!!!</p>
+        <p class="moreinfo">
+          You need to be online to view the current weather
+        </p>
+      </div>
+    </div>
   </body>
 </html>
